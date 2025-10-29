@@ -41,23 +41,23 @@ export function DashboardShowcase() {
             position={{ top: '10%', left: '-5%' }}
             icon={Zap}
             title="AI Insights"
-            description="Predictive fault detection"
+            description="Predictive fault detection using machine learning"
             color="purple"
           />
           <FloatingCallout
             delay={1.3}
-            position={{ top: '30%', right: '-5%' }}
+            position={{ top: '35%', right: '-5%' }}
             icon={TrendingUp}
             title="Live Network Graphs"
-            description="Real-time performance metrics"
+            description="Visual signal quality and throughput analysis"
             color="cyan"
           />
           <FloatingCallout
             delay={1.6}
-            position={{ bottom: '20%', left: '-5%' }}
+            position={{ bottom: '35%', left: '-5%' }}
             icon={AlertCircle}
             title="Smart Alerts"
-            description="Instant anomaly detection"
+            description="Real-time anomaly detection and notifications"
             color="pink"
           />
           <FloatingCallout
@@ -65,7 +65,7 @@ export function DashboardShowcase() {
             position={{ bottom: '10%', right: '-5%' }}
             icon={Activity}
             title="OTDR Scans"
-            description="Continuous fiber monitoring"
+            description="Automated continuous fiber monitoring"
             color="green"
           />
 
@@ -133,12 +133,12 @@ export function DashboardShowcase() {
                   <div className="flex justify-between items-center mb-4">
                     <div>
                       <h3 className="text-white mb-1 text-lg font-semibold">Network Performance</h3>
-                      <p className="text-xs text-gray-400">Latency & throughput trends over 24 hours</p>
+                      <p className="text-xs text-gray-400">Signal quality and throughput metrics</p>
                     </div>
                     <div className="flex gap-3">
                       <span className="text-xs text-gray-400 flex items-center gap-1">
                         <div className="w-2 h-2 rounded-full bg-purple-500" />
-                        Latency
+                        Quality
                       </span>
                       <span className="text-xs text-gray-400 flex items-center gap-1">
                         <div className="w-2 h-2 rounded-full bg-cyan-500" />
@@ -147,42 +147,88 @@ export function DashboardShowcase() {
                     </div>
                   </div>
                   
-                  {/* Animated chart */}
-                  <div className="h-48 flex items-end gap-1">
-                    {Array.from({ length: 40 }).map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className="flex-1 flex flex-col gap-1"
-                        initial={{ height: 0 }}
-                        animate={isInView ? { height: 'auto' } : { height: 0 }}
-                        transition={{ delay: 1 + i * 0.02 }}
-                      >
-                        <motion.div
-                          className="w-full bg-gradient-to-t from-purple-600 to-purple-400 rounded-sm"
-                          animate={{
-                            height: [`${30 + Math.random() * 70}%`, `${30 + Math.random() * 70}%`]
-                          }}
-                          transition={{
-                            duration: 2,
-                            delay: 1.5 + i * 0.02,
-                            repeat: Infinity,
-                            repeatType: "reverse"
-                          }}
+                  {/* Line chart with grid */}
+                  <div className="h-48 relative">
+                    {/* Grid lines */}
+                    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 100" preserveAspectRatio="none">
+                      {/* Horizontal grid lines */}
+                      {[0, 25, 50, 75, 100].map((y) => (
+                        <line
+                          key={y}
+                          x1="0"
+                          y1={y}
+                          x2="400"
+                          y2={y}
+                          stroke="rgba(139, 92, 246, 0.1)"
+                          strokeWidth="0.5"
                         />
-                        <motion.div
-                          className="w-full bg-gradient-to-t from-cyan-600 to-cyan-400 rounded-sm"
-                          animate={{
-                            height: [`${40 + Math.random() * 60}%`, `${40 + Math.random() * 60}%`]
-                          }}
-                          transition={{
-                            duration: 2.5,
-                            delay: 1.5 + i * 0.02,
-                            repeat: Infinity,
-                            repeatType: "reverse"
-                          }}
-                        />
-                      </motion.div>
-                    ))}
+                      ))}
+                      
+                      {/* Y-axis labels */}
+                      <text x="5" y="10" fill="rgba(156, 163, 175, 0.5)" fontSize="8">100</text>
+                      <text x="5" y="35" fill="rgba(156, 163, 175, 0.5)" fontSize="8">75</text>
+                      <text x="5" y="60" fill="rgba(156, 163, 175, 0.5)" fontSize="8">50</text>
+                      <text x="5" y="85" fill="rgba(156, 163, 175, 0.5)" fontSize="8">25</text>
+                      
+                      {/* Smooth line for Quality (purple) */}
+                      <motion.path
+                        d="M0,10 Q50,8 100,12 T200,15 T300,13 T400,10"
+                        fill="none"
+                        stroke="#a855f7"
+                        strokeWidth="2"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={isInView ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+                        transition={{ duration: 2, ease: "easeInOut" }}
+                      />
+                      
+                      {/* Area fill for Quality */}
+                      <motion.path
+                        d="M0,10 Q50,8 100,12 T200,15 T300,13 T400,10 L400,100 L0,100 Z"
+                        fill="url(#qualityGradient)"
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 0.3 } : { opacity: 0 }}
+                        transition={{ duration: 2 }}
+                      />
+                      
+                      {/* Smooth line for Throughput (cyan) */}
+                      <motion.path
+                        d="M0,15 Q50,13 100,17 T200,20 T300,18 T400,15"
+                        fill="none"
+                        stroke="#06b6d4"
+                        strokeWidth="2"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={isInView ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+                        transition={{ duration: 2, delay: 0.3, ease: "easeInOut" }}
+                      />
+                      
+                      {/* Area fill for Throughput */}
+                      <motion.path
+                        d="M0,15 Q50,13 100,17 T200,20 T300,18 T400,15 L400,100 L0,100 Z"
+                        fill="url(#throughputGradient)"
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 0.2 } : { opacity: 0 }}
+                        transition={{ duration: 2, delay: 0.3 }}
+                      />
+                      
+                      {/* Gradients */}
+                      <defs>
+                        <linearGradient id="qualityGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stopColor="#a855f7" stopOpacity="0.3" />
+                          <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
+                        </linearGradient>
+                        <linearGradient id="throughputGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.3" />
+                          <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    
+                    {/* X-axis month labels */}
+                    <div className="absolute bottom-0 left-0 right-0 flex justify-between text-xs text-gray-500 px-2">
+                      {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].map((month, i) => (
+                        <span key={month} className={i % 2 === 0 ? '' : 'hidden md:inline'}>{month}</span>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
 

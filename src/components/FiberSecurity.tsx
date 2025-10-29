@@ -135,6 +135,10 @@ export function FiberSecurity() {
           viewport={{ once: true }}
           className="text-center"
         >
+           
+           <  span className="block w-full h-6"></span>
+
+          
           <motion.button
             whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(6, 182, 212, 0.6)' }}
             whileTap={{ scale: 0.95 }}
