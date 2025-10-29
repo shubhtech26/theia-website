@@ -87,15 +87,7 @@ export function TrustedBy() {
           })}
         </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mt-8 text-gray-500 text-xs"
-        >
-          Names represent customers and pilot partners
-        </motion.p>
+       
       </div>
     </section>
   );

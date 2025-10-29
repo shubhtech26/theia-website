@@ -129,8 +129,7 @@ export function ProductStoryHero() {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="max-w-3xl mx-auto mb-12 text-gray-300 text-xl md:text-2xl text-center"
         >
-          AI-powered monitoring for dark fiber networks. Instantly detect faults, visualize impact, and automate protection with OTDR, GIS, and real-time alerts—all from a single cloud-native platform.
-        </motion.p>
+AI-powered fiber monitoring with live OTDR, GIS visualization, and instant fault resolution.        </motion.p>
 
         {/* CTA Buttons */}
         <motion.div

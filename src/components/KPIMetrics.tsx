@@ -232,6 +232,8 @@ export function KPIMetrics() {
           viewport={{ once: true }}
           className="text-center"
         >
+          {/* cohort metrics from production and pilot deployments */}
+          <span className="block h-10"></span>
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             <p className="text-gray-400 text-xs md:text-sm">
