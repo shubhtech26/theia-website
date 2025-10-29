@@ -21,8 +21,11 @@ export function DashboardShowcase() {
           <h2 className="text-white mb-6 text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-400">
             Network Overview Dashboard
           </h2>
-          <p className="text-gray-400 text-xl max-w-3xl mx-auto">
-            Real-time visibility into your entire fiber network with AI-powered insights and live analytics
+          <p className="text-gray-400 text-xl max-w-3xl mx-auto mb-4">
+            Unified command center for monitoring your fiber network with real-time performance metrics, intelligent alerting, and comprehensive OTDR analytics
+          </p>
+          <p className="text-gray-500 text-base max-w-2xl mx-auto">
+            Track network health, active spans, scan counts, and alerts at a glance. Dive deep into latency and throughput trends with interactive graphs.
           </p>
         </motion.div>
 
@@ -129,10 +132,10 @@ export function DashboardShowcase() {
                 >
                   <div className="flex justify-between items-center mb-4">
                     <div>
-                      <h3 className="text-white mb-1">Network Performance</h3>
-                      <p className="text-xs text-gray-400">Last 24 hours</p>
+                      <h3 className="text-white mb-1 text-lg font-semibold">Network Performance</h3>
+                      <p className="text-xs text-gray-400">Latency & throughput trends over 24 hours</p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-3">
                       <span className="text-xs text-gray-400 flex items-center gap-1">
                         <div className="w-2 h-2 rounded-full bg-purple-500" />
                         Latency
@@ -225,10 +228,11 @@ export function DashboardShowcase() {
 
                   {/* Quick stats */}
                   <div className="bg-gradient-to-br from-cyan-900/30 to-blue-900/30 rounded-xl p-4 border border-cyan-500/30">
-                    <h4 className="text-white text-sm mb-3 flex items-center gap-2">
+                    <h4 className="text-white text-sm mb-2 flex items-center gap-2 font-semibold">
                       <Activity className="w-4 h-4 text-cyan-400" />
                       Live Statistics
                     </h4>
+                    <p className="text-xs text-gray-400 mb-3">Key operational metrics updated in real-time</p>
                     <div className="space-y-3">
                       {[
                         { label: 'Avg Response Time', value: '12ms' },
@@ -243,7 +247,7 @@ export function DashboardShowcase() {
                           className="flex justify-between items-center"
                         >
                           <span className="text-xs text-gray-400">{stat.label}</span>
-                          <span className="text-sm text-cyan-400">{stat.value}</span>
+                          <span className="text-sm text-cyan-400 font-semibold">{stat.value}</span>
                         </motion.div>
                       ))}
                     </div>

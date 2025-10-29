@@ -70,7 +70,7 @@ export function FiberSecurity() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-green-600/10 to-cyan-600/10 border border-green-500/30 rounded-3xl p-8"
+            className="bg-gradient-to-br from-green-600/10 to-cyan-600/10 border-2 border-green-500/50 rounded-3xl p-8"
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center">
@@ -80,26 +80,23 @@ export function FiberSecurity() {
             </div>
 
             <p className="text-gray-300 text-lg mb-6">
-              AI-powered optical analysis catches intrusions
+              Our three-layer detection system identifies unauthorized access through continuous optical monitoring, AI-powered anomaly detection, and precision location tracking.
             </p>
-
-            <div className="space-y-3">
-              {[
-                { icon: Eye, text: 'Baseline signal fingerprinting' },
-                { icon: Zap, text: 'Instant anomaly detection' },
-                { icon: MapPin, text: '±2m fault accuracy' }
-              ].map((step) => {
-                const Icon = step.icon;
-                return (
-                  <div key={step.text} className="flex items-center gap-3 bg-black/30 rounded-lg p-3 border border-green-500/20">
-                    <Icon className="w-5 h-5 text-green-400" />
-                    <span className="text-gray-300">{step.text}</span>
-                  </div>
-                );
-              })}
-            </div>
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-8"
+        >
+          <h3 className="text-white text-2xl font-bold mb-3">Security Performance Metrics</h3>
+          <p className="text-gray-300 text-base max-w-3xl mx-auto">
+            Our security system delivers pinpoint accuracy within 2 meters, sub-second alerting, automated field dispatch, and complete audit trails for compliance and investigation.
+          </p>
+        </motion.div>
 
         {/* Live Protection Stats */}
         <motion.div
@@ -107,13 +104,13 @@ export function FiberSecurity() {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10"
         >
           {[
-            { label: 'Accuracy', value: '±2m' },
-            { label: 'Alert Speed', value: '<1s' },
-            { label: 'Dispatch', value: 'Auto' },
-            { label: 'Audit Trail', value: '100%' }
+            { label: 'Fault Location Precision', value: '±2m', desc: 'GPS-level accuracy for pinpointing threats' },
+            { label: 'Alert Response Time', value: '<1s', desc: 'From detection to notification' },
+            { label: 'Field Dispatch', value: 'Auto', desc: 'Automated team coordination' },
+            { label: 'Documentation', value: '100%', desc: 'Complete audit trail logging' }
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -124,9 +121,27 @@ export function FiberSecurity() {
               className="bg-black/30 rounded-xl p-6 border border-cyan-500/30 hover:border-cyan-500/60 transition-all"
             >
               <div className="text-4xl text-cyan-400 mb-2 font-bold">{stat.value}</div>
-              <p className="text-gray-400 text-sm">{stat.label}</p>
+              <p className="text-white text-sm font-semibold mb-1">{stat.label}</p>
+              <p className="text-gray-400 text-xs">{stat.desc}</p>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Learn More CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <motion.button
+            whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(6, 182, 212, 0.6)' }}
+            whileTap={{ scale: 0.95 }}
+            className="px-10 py-4 bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-700 hover:to-cyan-700 text-white rounded-xl shadow-lg shadow-cyan-500/30 font-semibold text-lg"
+          >
+            Learn More About Fiber Security
+          </motion.button>
         </motion.div>
       </div>
     </section>

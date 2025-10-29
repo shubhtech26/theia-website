@@ -1,6 +1,6 @@
 import { motion, useInView } from 'motion/react';
 import { useRef, useState, useEffect } from 'react';
-import { MessageCircle, Zap, Lightbulb, Sparkles } from 'lucide-react';
+import { MessageCircle, Zap, Lightbulb, Sparkles, Send } from 'lucide-react';
 
 const messages = [
   {
@@ -126,6 +126,18 @@ export function TheiaAIOrb() {
                 </motion.div>
               );
             })}
+
+            {/* Try Theia AI Button */}
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.8 }}
+              whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(139, 92, 246, 0.6)' }}
+              whileTap={{ scale: 0.95 }}
+              className="mt-4 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl shadow-lg shadow-purple-500/30 font-semibold text-center"
+            >
+              Try Theia AI Now
+            </motion.button>
           </motion.div>
 
           {/* Right side - Chat Interface */}
@@ -256,15 +268,15 @@ export function TheiaAIOrb() {
 
               {/* Input area */}
               <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
-                <div className="flex gap-2">
+                <div className="flex gap-2 items-center">
                   <input
                     type="text"
-                    placeholder="Ask me anything..."
-                    className="flex-1 px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    placeholder="Ask me anything about fiber monitoring..."
+                    className="flex-1 px-4 py-3 bg-white border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     disabled
                   />
-                  <button className="px-5 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg text-sm font-medium hover:from-purple-700 hover:to-pink-700 transition-all">
-                    Send
+                  <button className="p-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-medium hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg shadow-purple-500/30">
+                    <Send className="w-5 h-5" />
                   </button>
                 </div>
               </div>

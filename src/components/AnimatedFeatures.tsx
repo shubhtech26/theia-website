@@ -32,9 +32,8 @@ const features: Feature[] = [
   },
   {
     icon: BarChart3,
-    title: 'SLA Analytics',
-    description: 'Track trends and verify SLAs with time-stamped event history',
-    badge: 'SLA Enforced'
+    title: 'Analytics',
+    description: 'Track trends and verify SLAs with time-stamped event history'
   },
   {
     icon: Shield,

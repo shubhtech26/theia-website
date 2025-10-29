@@ -136,13 +136,12 @@ export function UseCases() {
                 onClick={() => setSelectedCase(useCase.id)}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className={`flex items-center gap-2 px-5 py-3 rounded-full border-2 transition-all ${
+                className={`px-6 py-3.5 rounded-full border-2 transition-all ${
                   isSelected
                     ? `bg-gradient-to-r from-${useCase.color}-600 to-${useCase.color}-800 border-${useCase.color}-500 shadow-lg shadow-${useCase.color}-500/30`
                     : 'bg-white/5 border-white/10 hover:border-purple-500/50'
                 }`}
               >
-                <Icon className={`w-5 h-5 ${isSelected ? 'text-white' : 'text-gray-400'}`} />
                 <span className={`text-sm md:text-base font-medium ${isSelected ? 'text-white' : 'text-gray-400'}`}>
                   {useCase.industry}
                 </span>
@@ -230,7 +229,7 @@ export function UseCases() {
               </p>
 
               {/* Key capabilities */}
-              <div className="space-y-3">
+              <div className="space-y-3 mb-6">
                 {[
                   { icon: MapPin, text: 'Meter-level fault accuracy' },
                   { icon: TrendingUp, text: 'Real-time continuous monitoring' },
@@ -251,6 +250,18 @@ export function UseCases() {
                   );
                 })}
               </div>
+
+              {/* Read More Button */}
+              <motion.button
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`w-full py-3 bg-${currentCase.color}-600/20 border border-${currentCase.color}-500/50 hover:bg-${currentCase.color}-600/30 text-${currentCase.color}-300 rounded-xl font-medium transition-all`}
+              >
+                Learn More About Implementation
+              </motion.button>
             </div>
           </motion.div>
         </motion.div>

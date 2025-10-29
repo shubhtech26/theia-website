@@ -33,22 +33,39 @@ export function SLAEnforcement() {
           </p>
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-8"
+        >
+          <p className="text-gray-300 text-base max-w-3xl mx-auto">
+            Our SLA dashboard continuously monitors your network to ensure compliance. Track uptime percentages, measure average response times from detection to resolution, and maintain a record of zero SLA violations.
+          </p>
+        </motion.div>
+
         {/* Animated SLA Dashboard */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-br from-[#141937] to-[#1e2347] border border-purple-500/30 rounded-3xl p-8 mb-10 overflow-hidden relative"
+          className="bg-gradient-to-br from-[#141937] to-[#1e2347] border border-purple-500/30 rounded-3xl p-8 mb-8 overflow-hidden relative"
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/10 rounded-full blur-3xl" />
           
-          <div className="relative z-10">            
-            <div className="grid md:grid-cols-3 gap-4">
+          <div className="relative z-10">
+            <div className="mb-6">
+              <h3 className="text-white text-2xl font-bold mb-2">Live SLA Metrics</h3>
+              <p className="text-gray-400 text-sm">Real-time performance indicators ensuring service level commitments</p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-4 mb-6">
               {[
-                { value: '99.9%', label: 'Uptime', color: 'green' },
-                { value: '<12min', label: 'Response Time', color: 'cyan' },
-                { value: '0', label: 'Violations', color: 'purple' }
+                { value: '99.9%', label: 'Uptime', desc: 'Network availability over last 30 days', color: 'green' },
+                { value: '<12min', label: 'Response Time', desc: 'Average time from alert to resolution', color: 'cyan' },
+                { value: '0', label: 'Violations', desc: 'SLA breaches in current period', color: 'purple' }
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}
@@ -59,11 +76,29 @@ export function SLAEnforcement() {
                   className={`bg-black/30 rounded-xl p-6 border border-${stat.color}-500/30 hover:border-${stat.color}-500/60 transition-all`}
                 >
                   <div className={`text-5xl text-${stat.color}-400 mb-2 font-bold`}>{stat.value}</div>
-                  <div className="text-gray-400 text-sm">{stat.label}</div>
+                  <div className="text-white text-base font-semibold mb-1">{stat.label}</div>
+                  <div className="text-gray-400 text-xs">{stat.desc}</div>
                 </motion.div>
               ))}
             </div>
           </div>
+        </motion.div>
+
+        {/* Learn More CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <motion.button
+            whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(139, 92, 246, 0.6)' }}
+            whileTap={{ scale: 0.95 }}
+            className="px-10 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl shadow-lg shadow-purple-500/30 font-semibold text-lg"
+          >
+            Learn More About SLA Tracking
+          </motion.button>
         </motion.div>
       </div>
     </section>
