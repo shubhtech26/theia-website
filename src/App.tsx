@@ -1,6 +1,8 @@
 import { AnimatedBackground } from "./components/AnimatedBackground";
 import { FuturisticNavigation } from "./components/FuturisticNavigation";
 import { ProductStoryHero } from "./components/ProductStoryHero";
+import { TrustedBy } from "./components/TrustedBy";
+import { KPIMetrics } from "./components/KPIMetrics";
 import { AnimatedFeatures } from "./components/AnimatedFeatures";
 import { TheiaAIOrb } from "./components/TheiaAIOrb";
 import { DashboardShowcase } from "./components/DashboardShowcase";
@@ -16,6 +18,8 @@ export default function App() {
       <div className="relative z-10">
         <FuturisticNavigation />
         <ProductStoryHero />
+        <TrustedBy />
+        <KPIMetrics />
         <AnimatedFeatures />
         <TheiaAIOrb />
         <DashboardShowcase />
