@@ -38,7 +38,8 @@ export function DashboardShowcase() {
           {/* Floating callouts */}
           <FloatingCallout
             delay={1}
-            position={{ top: '10%', left: '-5%' }}
+          //  position={{ top: '10%', left: '-5%' }}
+          position={{ bottom: '10%', right: '-5%' }}//otdrscan to replace ai insight
             icon={Zap}
             title="AI Insights"
             description="Predictive fault detection using machine learning"
@@ -46,7 +47,8 @@ export function DashboardShowcase() {
           />
           <FloatingCallout
             delay={1.3}
-            position={{ top: '35%', right: '-5%' }}
+           // position={{ top: '35%', right: '-5%' }} //live network to replace small alerts
+           position={{ bottom: '35%', left: '-5%' }}
             icon={TrendingUp}
             title="Live Network Graphs"
             description="Visual signal quality and throughput analysis"
@@ -54,7 +56,8 @@ export function DashboardShowcase() {
           />
           <FloatingCallout
             delay={1.6}
-            position={{ bottom: '35%', left: '-5%' }}
+        //    position={{ bottom: '35%', left: '-5%' }} //small alerts to replace live network graphs
+        position={{ top: '35%', right: '-5%' }}
             icon={AlertCircle}
             title="Smart Alerts"
             description="Real-time anomaly detection and notifications"
@@ -62,7 +65,9 @@ export function DashboardShowcase() {
           />
           <FloatingCallout
             delay={1.9}
-            position={{ bottom: '10%', right: '-5%' }}
+           // position={{ bottom: '10%', right: '-5%' }}//ai insight to replace
+           position={{ top: '10%', left: '-5%' }}
+
             icon={Activity}
             title="OTDR Scans"
             description="Automated continuous fiber monitoring"
