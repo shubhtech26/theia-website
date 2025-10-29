@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Button } from './ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 
 export function FuturisticNavigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [trustCenterOpen, setTrustCenterOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,12 +17,23 @@ export function FuturisticNavigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setTrustCenterOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setMobileMenuOpen(false);
+    setTrustCenterOpen(false);
   };
 
   return (
@@ -75,8 +88,7 @@ export function FuturisticNavigation() {
                 { label: 'Features', id: 'features' },
                 { label: 'Theia AI', id: 'theia-ai' },
                 { label: 'Dashboard', id: 'dashboard' },
-                { label: 'SLA', id: 'sla' },
-                { label: 'Security', id: 'security' }
+                { label: 'Use Cases', id: 'use-cases' }
               ].map((item) => (
                 <motion.button
                   key={item.id}
@@ -94,6 +106,52 @@ export function FuturisticNavigation() {
                   />
                 </motion.button>
               ))}
+              
+              {/* Trust Center Dropdown */}
+              <div ref={dropdownRef} className="relative">
+                <motion.button
+                  onClick={() => setTrustCenterOpen(!trustCenterOpen)}
+                  whileHover={{ scale: 1.1, color: '#a855f7' }}
+                  whileTap={{ scale: 0.95 }}
+                  className="text-gray-300 hover:text-purple-400 transition-colors relative group flex items-center gap-1"
+                >
+                  Trust Center
+                  <ChevronDown className={`w-4 h-4 transition-transform ${trustCenterOpen ? 'rotate-180' : ''}`} />
+                  <motion.div
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 origin-left"
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.button>
+                
+                <AnimatePresence>
+                  {trustCenterOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full mt-2 right-0 w-48 bg-[#0a0e27]/95 backdrop-blur-xl border border-purple-500/30 rounded-xl shadow-lg shadow-purple-500/20 overflow-hidden z-50"
+                    >
+                      {[
+                        { label: 'SLA', id: 'sla' },
+                        { label: 'Security', id: 'security' },
+                        { label: 'Compliance', id: 'compliance' }
+                      ].map((item, index) => (
+                        <motion.button
+                          key={item.id}
+                          onClick={() => scrollToSection(item.id)}
+                          whileHover={{ backgroundColor: 'rgba(139, 92, 246, 0.1)', x: 5 }}
+                          className="w-full text-left px-4 py-3 text-gray-300 hover:text-purple-400 transition-colors border-b border-purple-500/10 last:border-b-0"
+                        >
+                          {item.label}
+                        </motion.button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
 
             {/* CTA Buttons */}
@@ -149,8 +207,7 @@ export function FuturisticNavigation() {
             { label: 'Features', id: 'features' },
             { label: 'Theia AI', id: 'theia-ai' },
             { label: 'Dashboard', id: 'dashboard' },
-            { label: 'SLA', id: 'sla' },
-            { label: 'Security', id: 'security' }
+            { label: 'Use Cases', id: 'use-cases' }
           ].map((item) => (
             <button
               key={item.id}
@@ -160,6 +217,22 @@ export function FuturisticNavigation() {
               {item.label}
             </button>
           ))}
+          <div className="border-t border-purple-500/20 pt-4">
+            <p className="text-gray-500 text-sm mb-3">Trust Center</p>
+            {[
+              { label: 'SLA', id: 'sla' },
+              { label: 'Security', id: 'security' },
+              { label: 'Compliance', id: 'compliance' }
+            ].map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-white text-base hover:text-purple-400 transition-colors text-left block mb-3"
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
           <div className="flex flex-col gap-3 pt-6 border-t border-purple-500/20">
             <Button 
               onClick={() => scrollToSection('demo')} 

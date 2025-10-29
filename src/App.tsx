@@ -1,3 +1,4 @@
+import React from 'react';
 import { AnimatedBackground } from "./components/AnimatedBackground";
 import { FuturisticNavigation } from "./components/FuturisticNavigation";
 import { ProductStoryHero } from "./components/ProductStoryHero";
@@ -6,8 +7,10 @@ import { KPIMetrics } from "./components/KPIMetrics";
 import { AnimatedFeatures } from "./components/AnimatedFeatures";
 import { TheiaAIOrb } from "./components/TheiaAIOrb";
 import { DashboardShowcase } from "./components/DashboardShowcase";
+import { UseCases } from "./components/UseCases";
 import { SLAEnforcement } from "./components/SLAEnforcement";
 import { FiberSecurity } from "./components/FiberSecurity";
+import { Compliance } from "./components/Compliance";
 import { FuturisticDemoForm } from "./components/FuturisticDemoForm";
 import { FuturisticFooter } from "./components/FuturisticFooter";
 
@@ -23,8 +26,10 @@ export default function App() {
         <AnimatedFeatures />
         <TheiaAIOrb />
         <DashboardShowcase />
+        <UseCases />
         <SLAEnforcement />
         <FiberSecurity />
+        <Compliance />
         <FuturisticDemoForm />
         <FuturisticFooter />
       </div>

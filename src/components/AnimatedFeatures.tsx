@@ -2,7 +2,14 @@ import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
 import { Activity, Map, Zap, Bell, BarChart3, Shield } from 'lucide-react';
 
-const features = [
+interface Feature {
+  icon: any;
+  title: string;
+  description: string;
+  badge?: string;
+}
+
+const features: Feature[] = [
   {
     icon: Activity,
     title: 'Real-Time OTDR',
@@ -25,8 +32,9 @@ const features = [
   },
   {
     icon: BarChart3,
-    title: 'Analytics',
-    description: 'Track trends and verify SLAs with time-stamped event history'
+    title: 'SLA Analytics',
+    description: 'Track trends and verify SLAs with time-stamped event history',
+    badge: 'SLA Enforced'
   },
   {
     icon: Shield,
@@ -69,7 +77,7 @@ export function AnimatedFeatures() {
   );
 }
 
-function FeatureCard({ feature, icon: Icon, index }: { feature: typeof features[0]; icon: any; index: number }) {
+function FeatureCard({ feature, icon: Icon, index }: { feature: Feature; icon: any; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -91,6 +99,18 @@ function FeatureCard({ feature, icon: Icon, index }: { feature: typeof features[
       />
 
       <div className="relative z-10">
+        {/* SLA Badge */}
+        {feature.badge && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+            transition={{ delay: 0.5 + index * 0.1, type: "spring", stiffness: 200 }}
+            className="absolute -top-2 -right-2 px-3 py-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full text-xs font-semibold text-white shadow-lg shadow-green-500/50 z-20"
+          >
+            {feature.badge}
+          </motion.div>
+        )}
+
         {/* Animated icon */}
         <motion.div
           whileHover={{ rotate: 360, scale: 1.1 }}
